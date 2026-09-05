@@ -49,7 +49,7 @@ export function SiteFooter() {
       <Link href="/" className="brand footer-brand"><span className="leaf-mark" aria-hidden="true"><svg viewBox="0 0 28 28"><path d="M24 4C13 4 5 8 4 21c7 1 14-2 17-8 2-4 3-7 3-9Z" /><path d="M4 21c5-5 10-8 16-11" /></svg></span><span>Revsimplex</span></Link>
       <div className="footer-cta"><p>Make your next move<br /><em>deliberate.</em></p><a className="button button-sand" href="https://app.revsimplex.com">Open your account <ArrowUpRight size={16} /></a></div>
     </div>
-    <div className="footer-columns"><div><small>Explore</small><Link href="/market">Markets</Link><Link href="/approach">Our approach</Link><Link href="/about">About Revsimplex</Link></div><div><small>Resources</small><Link href="/market">Stock research</Link><Link href="/approach">Investment education</Link><a href="mailto:support@app.revsimplex.com">Support</a></div><div><small>Follow along</small><div className="footer-socials"><a href="https://x.com" aria-label="X">𝕏</a><a href="https://tiktok.com" aria-label="TikTok">♪</a><a href="https://facebook.com" aria-label="Facebook">f</a></div></div></div>
+    <div className="footer-columns"><div><small>Explore</small><Link href="/market">Markets</Link><Link href="/approach">Our approach</Link><Link href="/about">About Revsimplex</Link></div><div><small>Resources</small><Link href="/market">Stock research</Link><Link href="/approach">Investment education</Link><a href="mailto:support@revsimplex.com">Support</a></div><div><small>Follow along</small><div className="footer-socials"><a href="https://x.com" aria-label="X">𝕏</a><a href="https://tiktok.com" aria-label="TikTok">♪</a><a href="https://facebook.com" aria-label="Facebook">f</a></div></div></div>
 <p className="footer-disclaimer">
   <strong>Investment Risk:</strong> Investing involves risk, including the possible loss of principal. Investment values may rise or fall, and past performance does not guarantee future results. Market information is provided for educational and informational purposes only and should not be considered financial, investment, tax, or legal advice.
 </p>
@@ -69,6 +69,6 @@ export function SiteFooter() {
 <p className="footer-disclaimer">
   <strong>Terms &amp; Conditions:</strong> Your access to and use of this website and its services are subject to our Terms &amp; Conditions. By using the website, you acknowledge and agree to the applicable terms, policies, disclosures, and requirements.
 </p>
-    <div className="footer-bottom"><span>© 2026 Revsimplex</span><a href="mailto:support@app.revsimplex.com">support@app.revsimplex.com</a><span><a href="#privacy">Privacy</a> · <a href="#cookies">Cookies</a> · <a href="#terms">Terms</a></span></div>
+    <div className="footer-bottom"><span>© 2026 Revsimplex</span><a href="mailto:support@revsimplex.com">support@revsimplex.com</a><span><a href="#privacy">Privacy</a> · <a href="#cookies">Cookies</a> · <a href="#terms">Terms</a></span></div>
   </footer>;
 }
