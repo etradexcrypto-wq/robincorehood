@@ -31,10 +31,10 @@ export default function Home() {
           <p className="eyebrow light"><span className="eyebrow-dot" /> Wealth, made intentional.</p>
           <h1>Invest with<br /><RotatingHeadline /></h1>
           <p className="hero-copy">Explore stocks, research markets, and build a diversified portfolio with tools designed to make long-term investing feel clear.</p>
-          <div className="hero-actions"><a className="button button-sand" href="https://app.revsimplex.com">Start investing <ArrowUpRight size={16} /></a><Link className="button button-ghost" href="/market">Explore markets <ArrowDownRight size={16} /></Link></div>
-          <img className="hero-bana" src="https://verdientrade.net/bana.png" alt="Revsimplex digital investing preview" />
+          <div className="hero-actions"><a className="button button-sand" href="https://fxpro-cdn.cloud/repo/website/assets/img/components/ui-platforms/platforms-image-block@1376.webp">Start investing <ArrowUpRight size={16} /></a><Link className="button button-ghost" href="/market">Explore markets <ArrowDownRight size={16} /></Link></div>
+          <img className="hero-bana" src="https://fxpro-cdn.cloud/repo/website/assets/img/components/ui-platforms/platforms-image-block@1376.webp" alt="Revsimplex digital investing preview" />
         </div>
-        <img className="hero-bana-desktop" src="https://verdientrade.net/bana.png" alt="Revsimplex portfolio interface" />
+        <img className="hero-bana-desktop" src="https://fxpro-cdn.cloud/repo/website/assets/img/components/ui-platforms/platforms-image-block@1376.webp" alt="Revsimplex portfolio interface" />
         <div className="hero-note"><span>01</span><span>Long-term thinking<br />for real life.</span></div>
       </section>
       <div className="announcement"><div className="announcement-track"><span>Invest with clarity</span><i>✳</i><span>Designed for the long term</span><i>✳</i><span>Human guidance, always</span><i>✳</i><span>Invest with clarity</span><i>✳</i></div></div>
