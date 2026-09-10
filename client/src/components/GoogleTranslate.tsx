@@ -14,7 +14,7 @@ export default function GoogleTranslate() {
   const [current, setCurrent] = useState("en");
   useEffect(() => {
     window.googleTranslateElementInit = () => { const TranslateElement = (window as any).google?.translate?.TranslateElement; if (TranslateElement) new TranslateElement({ pageLanguage: "en", includedLanguages: "en,es,fr,de,pt", autoDisplay: false }, "google_translate_element"); };
-    if (!document.querySelector("script[data-revsimplex-translate]")) { const script = document.createElement("script"); script.src = "https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"; script.async = true; script.dataset.revsimplexTranslate = "true"; document.body.appendChild(script); }
+    if (!document.querySelector("script[data-copyspheretx-translate]")) { const script = document.createElement("script"); script.src = "https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"; script.async = true; script.dataset.copyspheretxTranslate = "true"; document.body.appendChild(script); }
     return () => { delete window.googleTranslateElementInit; };
   }, []);
   const choose = (language: string) => { const select = document.querySelector<HTMLSelectElement>(".goog-te-combo"); if (select) { select.value = language; select.dispatchEvent(new Event("change")); } setCurrent(language); setOpen(false); };

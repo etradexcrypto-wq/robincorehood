@@ -15,5 +15,5 @@ export const researchCards = [
 export const testimonials = [
   { name: "Maya Okafor", role: "Product designer · London", quote: "The market view finally gives me enough context to make decisions without getting lost in the noise.", initials: "MO" },
   { name: "Elliot Carter", role: "Founder · Austin", quote: "I can see exactly how my portfolio is diversified — and the research helps me stay focused on the long term.", initials: "EC" },
-  { name: "Sofia Marin", role: "Architect · Barcelona", quote: "Revsimplex makes investing feel considered, transparent, and surprisingly calm.", initials: "SM" },
+  { name: "Sofia Marin", role: "Architect · Barcelona", quote: "copyspheretx makes investing feel considered, transparent, and surprisingly calm.", initials: "SM" },
 ];

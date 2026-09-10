@@ -15,8 +15,8 @@ export default function Preloader() {
     };
   }, []);
   if (!visible) return null;
-  return <div className="organic-preloader" role="status" aria-label="Opening Revsimplex">
+  return <div className="organic-preloader" role="status" aria-label="Opening copyspheretx">
     <div className="organic-blob" aria-hidden="true" />
-    <div className="organic-brand"><span className="organic-brand-leaf"><svg viewBox="0 0 28 28"><path d="M24 4C13 4 5 8 4 21c7 1 14-2 17-8 2-4 2-7 3-9Z" /><path d="M4 21c5-5 10-8 16-11" /></svg></span><strong>REVSIMPLEX</strong></div>
+    <div className="organic-brand"><span className="organic-brand-leaf"><svg viewBox="0 0 28 28"><path d="M24 4C13 4 5 8 4 21c7 1 14-2 17-8 2-4 2-7 3-9Z" /><path d="M4 21c5-5 10-8 16-11" /></svg></span><strong>copyspheretx</strong></div>
   </div>;
 }

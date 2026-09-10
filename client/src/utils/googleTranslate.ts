@@ -22,7 +22,7 @@ export const languages: Language[] = [
   { code: "hi", name: "हिन्दी", flag: "🇮🇳" },
 ];
 
-const STORAGE_KEY = "revsimplex_language";
+const STORAGE_KEY = "copyspheretx_language";
 const GOOGLE_SCRIPT_ID = "google-translate-script";
 const GOOGLE_ELEMENT_ID = "google_translate_element";
 
