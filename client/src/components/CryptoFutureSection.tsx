@@ -610,7 +610,7 @@ export default function CryptoFutureSection() {
         <div className="crypto-future-inner" style={styles.inner}>
           <div style={styles.copy}>
             <p style={styles.eyebrow}>
-              <span style={styles.eyebrowDot} /> copyspheretx / digital frontier
+              <span style={styles.eyebrowDot} /> robincorehood / digital frontier
             </p>
             <h2 style={styles.h2}>
               Try the portfolio
@@ -622,7 +622,7 @@ export default function CryptoFutureSection() {
               and a long-term view of what comes next.
             </p>
             <a
-              href="https://app.copyspheretx.com"
+              href="https://app.robincorehood.com"
               style={styles.button}
             >
               Access portfolio <ArrowUpRight size={16} />
@@ -631,7 +631,7 @@ export default function CryptoFutureSection() {
           <div style={styles.visual}>
             <img
               src={orb}
-              alt="copyspheretx digital asset orb"
+              alt="robincorehood digital asset orb"
               style={styles.visualImg}
             />
             <span style={styles.visualSpan}>RS / 03</span>
@@ -669,7 +669,7 @@ export default function CryptoFutureSection() {
 
           <div style={styles.buttonsRow}>
             <a
-              href="https://app.copyspheretx.com/login-register"
+              href="https://app.robincorehood.com/login-register"
               style={styles.primaryButton}
             >
               <div>Start Trading</div>
