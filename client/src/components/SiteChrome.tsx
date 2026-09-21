@@ -20,7 +20,7 @@ export function SiteHeader() {
       <div className="header-pill">
         <Link href="/" className="brand" aria-label="robincorehood home">
           <span className="leaf-mark" aria-hidden="true"><svg viewBox="0 0 28 28"><path d="M24 4C13 4 5 8 4 21c7 1 14-2 17-8 2-4 2-7 3-9Z" /><path d="M4 21c5-5 10-8 16-11" /></svg></span>
-          <span>robincorehood</span>
+          <span>Robincorehood</span>
         </Link>
         <HeaderLoader />
         <nav className="desktop-nav" aria-label="Main navigation">

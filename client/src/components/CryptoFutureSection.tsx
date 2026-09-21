@@ -293,14 +293,14 @@ const row1Cards = [
     handle: "@johncarter",
     avatar:
       "https://plus.unsplash.com/premium_photo-1689977807477-a579eda91fa2?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-    text: "Nestprox's AI algorithms have transformed my trading strategy. My portfolio has grown consistently since I started using the platform.",
+    text: "Robincorehood's AI algorithms have transformed my trading strategy. My portfolio has grown consistently since I started using the platform.",
   },
   {
     name: "Lilly Woods",
     handle: "@lilliwoods",
     avatar:
       "https://cdn.prod.website-files.com/685d5ba1cf5c7f72f666951c/685d777ef1a9c9094983b344_lilly-woods-avatar-defichain-webflow-template.png",
-    text: "The predictive analytics are incredibly accurate. I've seen a 40% increase in my returns since switching to Nestprox.",
+    text: "The predictive analytics are incredibly accurate. I've seen a 40% increase in my returns since switching to Robincorehood.",
   },
   {
     name: "Patrick Meyer",
@@ -317,7 +317,7 @@ const row2Cards = [
     handle: "@sophiemoore",
     avatar:
       "https://cdn.prod.website-files.com/685d5ba1cf5c7f72f666951c/6862cd18df27b05971ff3cff_sophie-moore-testimonial-defichain-webflow-template.png",
-    text: "As a beginner, Nestprox made crypto trading accessible. The AI guidance helped me make informed decisions from day one.",
+    text: "As a beginner, Robincorehood made crypto trading accessible. The AI guidance helped me make informed decisions from day one.",
   },
   {
     name: "Andy Smith",
@@ -331,7 +331,7 @@ const row2Cards = [
     handle: "@jenniferwhite",
     avatar:
       "https://cdn.prod.website-files.com/685d5ba1cf5c7f72f666951c/688ceda4a9a9dcae54be452a_jennifer-white-testimonial-image-defichain-webflow-template.jpg",
-    text: "The 24/7 market monitoring means I never miss opportunities. Nestprox executes trades even when I'm sleeping.",
+    text: "The 24/7 market monitoring means I never miss opportunities. Robincorehood executes trades even when I'm sleeping.",
   },
 ];
 
@@ -355,7 +355,7 @@ const row3Cards = [
     handle: "@jamesdevis",
     avatar:
       "https://cdn.prod.website-files.com/685d5ba1cf5c7f72f666951c/685d777ea67a4c233323e36a_james-davis-avatar-defichain-webflow-template.png",
-    text: "The speed of trade execution is remarkable. Nestprox captures opportunities that manual trading would completely miss.",
+    text: "The speed of trade execution is remarkable. Robincorehood captures opportunities that manual trading would completely miss.",
   },
 ];
 
@@ -648,7 +648,7 @@ export default function CryptoFutureSection() {
             <h2 style={styles.display8}>What Our Traders Say</h2>
             <div style={styles.innerContainer}>
               <p style={styles.innerContainerP}>
-                Thousands of traders trust Nestprox's AI algorithms to maximize
+                Thousands of traders trust Robincorehood's AI algorithms to maximize
                 their crypto investments with precision and efficiency.
               </p>
             </div>
