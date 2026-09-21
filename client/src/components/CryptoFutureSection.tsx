@@ -1,15 +1,23 @@
 import React, { useEffect, useRef } from "react";
 import { ArrowUpRight } from "lucide-react";
 
-const orb = "https://files.manuscdn.com/user_upload_by_module/session_file/310519663940838304/rueyZyJEojBbYXif.png";
+/* ------------------------------------------------------------------
+   ASSETS
+   ------------------------------------------------------------------ */
+const orb =
+  "https://files.manuscdn.com/user_upload_by_module/session_file/310519663940838304/rueyZyJEojBbYXif.png";
 
 const VALIDATION_ICON =
   "https://cdn.prod.website-files.com/685d5ba1cf5c7f72f666951c/685d76f774af5c94cfdd04f8_validation-check-defichain-webflow-template.svg";
 
 /* ------------------------------------------------------------------
-   INLINE STYLES (all CSS lives here — no external stylesheet needed)
+   INLINE STYLES
+   Grouped in the same order the JSX uses them:
+   section → layout → green block → testimonials → marquee → card →
+   overlays → CTA
    ------------------------------------------------------------------ */
 const styles: Record<string, React.CSSProperties> = {
+  /* --- SECTION SHELL --- */
   section: {
     background: "#0f2e1f",
     color: "#e8ede8",
@@ -19,8 +27,13 @@ const styles: Record<string, React.CSSProperties> = {
     WebkitFontSmoothing: "antialiased",
   },
 
-  /* --- green block --- */
+  /* --- LAYOUT --- */
   container: {
+    maxWidth: "1200px",
+    margin: "0 auto",
+    padding: "0 2rem",
+  },
+  containerDefault: {
     maxWidth: "1200px",
     margin: "0 auto",
     padding: "0 2rem",
@@ -31,6 +44,21 @@ const styles: Record<string, React.CSSProperties> = {
     gap: "4rem",
     alignItems: "center",
   },
+  textCenter: {
+    textAlign: "center",
+    marginBottom: "3rem",
+  },
+  innerContainer: {
+    maxWidth: "460px",
+    margin: "0 auto",
+  },
+  innerContainerP: {
+    fontSize: "1.125rem",
+    color: "#4a4a52",
+    lineHeight: 1.6,
+  },
+
+  /* --- GREEN BLOCK / COPY --- */
   copy: {
     display: "flex",
     flexDirection: "column",
@@ -88,6 +116,8 @@ const styles: Record<string, React.CSSProperties> = {
     cursor: "pointer",
     width: "fit-content",
   },
+
+  /* --- GREEN BLOCK / VISUAL --- */
   visual: {
     position: "relative",
     display: "flex",
@@ -110,22 +140,13 @@ const styles: Record<string, React.CSSProperties> = {
     fontWeight: 500,
   },
 
-  /* --- testimonial block (inside same section) --- */
+  /* --- TESTIMONIALS BLOCK --- */
   testimonials: {
     background: "#ffffff",
     color: "#0a0a0c",
     marginTop: "5rem",
     padding: "5rem 0 3rem",
     borderRadius: "40px 40px 0 0",
-  },
-  containerDefault: {
-    maxWidth: "1200px",
-    margin: "0 auto",
-    padding: "0 2rem",
-  },
-  textCenter: {
-    textAlign: "center",
-    marginBottom: "3rem",
   },
   display8: {
     fontSize: "2.5rem",
@@ -135,17 +156,8 @@ const styles: Record<string, React.CSSProperties> = {
     color: "#0a0a0c",
     marginBottom: "0.75rem",
   },
-  innerContainer: {
-    maxWidth: "460px",
-    margin: "0 auto",
-  },
-  innerContainerP: {
-    fontSize: "1.125rem",
-    color: "#4a4a52",
-    lineHeight: 1.6,
-  },
 
-  /* marquee wrapper */
+  /* --- MARQUEE --- */
   marqueeWrapper: {
     position: "relative",
     width: "100%",
@@ -175,15 +187,14 @@ const styles: Record<string, React.CSSProperties> = {
     willChange: "transform",
   },
 
-  /* card */
+  /* --- TESTIMONIAL CARD --- */
   card: {
     background: "#f8f9fc",
     borderRadius: "24px",
     padding: "1.75rem 1.75rem 1.5rem",
     width: "360px",
     minWidth: "360px",
-    boxShadow:
-      "0 4px 16px rgba(0,0,0,0.02), 0 1px 4px rgba(0,0,0,0.02)",
+    boxShadow: "0 4px 16px rgba(0,0,0,0.02), 0 1px 4px rgba(0,0,0,0.02)",
     border: "1px solid rgba(0,0,0,0.02)",
     display: "flex",
     flexDirection: "column",
@@ -239,7 +250,7 @@ const styles: Record<string, React.CSSProperties> = {
     margin: 0,
   },
 
-  /* overlays */
+  /* --- EDGE OVERLAYS --- */
   overlayLeft: {
     position: "absolute",
     left: 0,
@@ -261,7 +272,7 @@ const styles: Record<string, React.CSSProperties> = {
     background: "linear-gradient(to left, #ffffff 0%, transparent 100%)",
   },
 
-  /* CTA */
+  /* --- CTA --- */
   buttonsRow: {
     display: "flex",
     justifyContent: "center",
@@ -360,7 +371,7 @@ const row3Cards = [
 ];
 
 /* ------------------------------------------------------------------
-   TESTIMONIAL CARD
+   SUB-COMPONENTS
    ------------------------------------------------------------------ */
 function TestimonialCard({
   avatar,
@@ -374,11 +385,7 @@ function TestimonialCard({
   text: string;
 }) {
   return (
-    <div
-      style={{
-        ...styles.card,
-      }}
-    >
+    <div style={styles.card}>
       <div style={styles.avatarWrapper}>
         <img src={avatar} alt={name} style={styles.avatarImage} />
       </div>
@@ -400,9 +407,6 @@ function TestimonialCard({
   );
 }
 
-/* ------------------------------------------------------------------
-   MARQUEE TRACK
-   ------------------------------------------------------------------ */
 function MarqueeTrack({
   cards,
   direction = "left",
@@ -437,7 +441,74 @@ function MarqueeTrack({
 
 /* ------------------------------------------------------------------
    MARQUEE ENGINE
+   One shared state-factory so init + resize stay in sync.
    ------------------------------------------------------------------ */
+type TrackState = {
+  offset: number;
+  contentWidth: number;
+  direction: string;
+  speed: number;
+  lastTimestamp: number | null;
+  rafId: number | null;
+};
+
+function createTrackState(track: HTMLDivElement): TrackState | null {
+  const contents = track.querySelectorAll<HTMLDivElement>(".marquee-content");
+  if (contents.length < 2) return null;
+
+  const direction = track.dataset.direction || "left";
+  const speed = parseFloat(track.dataset.speed || "40");
+  const contentWidth = contents[0].offsetWidth;
+
+  return {
+    offset: direction === "left" ? 0 : -contentWidth,
+    contentWidth,
+    direction,
+    speed,
+    lastTimestamp: null,
+    rafId: null,
+  };
+}
+
+function startTrackLoop(track: HTMLDivElement, state: TrackState) {
+  function step(timestamp: number) {
+    if (!state.lastTimestamp) {
+      state.lastTimestamp = timestamp;
+      state.rafId = requestAnimationFrame(step);
+      return;
+    }
+
+    const wrapper = track.closest(".marquee-wrapper") as HTMLElement | null;
+    if (wrapper && wrapper.matches(":hover")) {
+      state.lastTimestamp = timestamp;
+      state.rafId = requestAnimationFrame(step);
+      return;
+    }
+
+    const delta = Math.min(timestamp - state.lastTimestamp, 64);
+    state.lastTimestamp = timestamp;
+
+    const moveAmount = (state.speed * delta) / 1000;
+
+    if (state.direction === "left") {
+      state.offset -= moveAmount;
+      if (state.offset <= -state.contentWidth) {
+        state.offset += state.contentWidth;
+      }
+    } else {
+      state.offset += moveAmount;
+      if (state.offset >= 0) {
+        state.offset -= state.contentWidth;
+      }
+    }
+
+    track.style.transform = `translate3d(${state.offset}px, 0, 0)`;
+    state.rafId = requestAnimationFrame(step);
+  }
+
+  state.rafId = requestAnimationFrame(step);
+}
+
 function useMarqueeEngine(
   containerRef: React.RefObject<HTMLDivElement | null>
 ) {
@@ -448,137 +519,38 @@ function useMarqueeEngine(
     const tracks = container.querySelectorAll<HTMLDivElement>(".marquee-track");
     if (!tracks.length) return;
 
-    const states = new Map<
-      HTMLDivElement,
-      {
-        offset: number;
-        contentWidth: number;
-        direction: string;
-        speed: number;
-        lastTimestamp: number | null;
-        rafId: number | null;
-      }
-    >();
+    const states = new Map<HTMLDivElement, TrackState>();
 
-    function initTrack(track: HTMLDivElement) {
-      const contents = track.querySelectorAll<HTMLDivElement>(".marquee-content");
-      if (contents.length < 2) return;
-
-      const direction = track.dataset.direction || "left";
-      const speed = parseFloat(track.dataset.speed || "40");
-      const firstContent = contents[0];
-      const contentWidth = firstContent.offsetWidth;
-
-      const state = {
-        offset: direction === "left" ? 0 : -contentWidth,
-        contentWidth,
-        direction,
-        speed,
-        lastTimestamp: null as number | null,
-        rafId: null as number | null,
-      };
+    function mountTrack(track: HTMLDivElement) {
+      const state = createTrackState(track);
+      if (!state) return;
 
       states.set(track, state);
 
       track.style.transform =
-        direction === "left"
+        state.direction === "left"
           ? "translate3d(0px, 0, 0)"
-          : `translate3d(${-contentWidth}px, 0, 0)`;
+          : `translate3d(${-state.contentWidth}px, 0, 0)`;
 
       startTrackLoop(track, state);
     }
 
-    function startTrackLoop(
-      track: HTMLDivElement,
-      state: {
-        offset: number;
-        contentWidth: number;
-        direction: string;
-        speed: number;
-        lastTimestamp: number | null;
-        rafId: number | null;
-      }
-    ) {
-      function step(timestamp: number) {
-        if (!state.lastTimestamp) {
-          state.lastTimestamp = timestamp;
-          state.rafId = requestAnimationFrame(step);
-          return;
-        }
-
-        const wrapper = track.closest(".marquee-wrapper") as HTMLElement | null;
-        if (wrapper && wrapper.matches(":hover")) {
-          state.lastTimestamp = timestamp;
-          state.rafId = requestAnimationFrame(step);
-          return;
-        }
-
-        const delta = Math.min(timestamp - state.lastTimestamp, 64);
-        state.lastTimestamp = timestamp;
-
-        const moveAmount = (state.speed * delta) / 1000;
-
-        if (state.direction === "left") {
-          state.offset -= moveAmount;
-          if (state.offset <= -state.contentWidth) {
-            state.offset += state.contentWidth;
-          }
-        } else {
-          state.offset += moveAmount;
-          if (state.offset >= 0) {
-            state.offset -= state.contentWidth;
-          }
-        }
-
-        track.style.transform = `translate3d(${state.offset}px, 0, 0)`;
-        state.rafId = requestAnimationFrame(step);
-      }
-
-      state.rafId = requestAnimationFrame(step);
-    }
-
-    const initTimer = setTimeout(() => {
-      tracks.forEach(initTrack);
+    const initTimer = window.setTimeout(() => {
+      tracks.forEach(mountTrack);
     }, 100);
 
     let resizeTimer: number | undefined;
     const onResize = () => {
       clearTimeout(resizeTimer);
       resizeTimer = window.setTimeout(() => {
+        // Tear down
         states.forEach((state) => {
           if (state.rafId) cancelAnimationFrame(state.rafId);
         });
         states.clear();
 
-        tracks.forEach((track) => {
-          const contents = track.querySelectorAll<HTMLDivElement>(
-            ".marquee-content"
-          );
-          if (contents.length < 2) return;
-
-          const direction = track.dataset.direction || "left";
-          const speed = parseFloat(track.dataset.speed || "40");
-          const firstContent = contents[0];
-          const contentWidth = firstContent.offsetWidth;
-
-          const state = {
-            offset: direction === "left" ? 0 : -contentWidth,
-            contentWidth,
-            direction,
-            speed,
-            lastTimestamp: null as number | null,
-            rafId: null as number | null,
-          };
-
-          states.set(track, state);
-
-          track.style.transform =
-            direction === "left"
-              ? "translate3d(0px, 0, 0)"
-              : `translate3d(${-contentWidth}px, 0, 0)`;
-
-          startTrackLoop(track, state);
-        });
+        // Rebuild
+        tracks.forEach(mountTrack);
       }, 250);
     };
 
@@ -603,9 +575,9 @@ export default function CryptoFutureSection() {
 
   return (
     <section style={styles.section}>
-      {/* ======================================================== */}
-      {/* GREEN BLOCK (original content)                            */}
-      {/* ======================================================== */}
+      {/* ============================================================
+          BLOCK 1 — GREEN / DIGITAL FRONTIER
+          ============================================================ */}
       <div style={styles.container}>
         <div className="crypto-future-inner" style={styles.inner}>
           <div style={styles.copy}>
@@ -621,13 +593,11 @@ export default function CryptoFutureSection() {
               Explore digital assets with a calmer framework, clearer context,
               and a long-term view of what comes next.
             </p>
-            <a
-              href="https://app.robincorehood.com"
-              style={styles.button}
-            >
+            <a href="https://app.robincorehood.com" style={styles.button}>
               Access portfolio <ArrowUpRight size={16} />
             </a>
           </div>
+
           <div style={styles.visual}>
             <img
               src={orb}
@@ -639,17 +609,17 @@ export default function CryptoFutureSection() {
         </div>
       </div>
 
-      {/* ======================================================== */}
-      {/* TESTIMONIAL MARQUEE — INSIDE THE SAME SECTION             */}
-      {/* ======================================================== */}
+      {/* ============================================================
+          BLOCK 2 — TESTIMONIAL MARQUEE
+          ============================================================ */}
       <div style={styles.testimonials}>
         <div style={styles.containerDefault}>
           <div style={styles.textCenter}>
             <h2 style={styles.display8}>What Our Traders Say</h2>
             <div style={styles.innerContainer}>
               <p style={styles.innerContainerP}>
-                Thousands of traders trust Robincorehood's AI algorithms to maximize
-                their crypto investments with precision and efficiency.
+                Thousands of traders trust Robincorehood's AI algorithms to
+                maximize their crypto investments with precision and efficiency.
               </p>
             </div>
           </div>
